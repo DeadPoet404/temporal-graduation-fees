@@ -157,6 +157,19 @@ def main():
             "note": note,
         })
 
+    # fold in anything the bot marked paid (data/payments.json ledger)
+    pay_file = BASE / "data" / "payments.json"
+    paid = json.loads(pay_file.read_text(encoding="utf-8")) if pay_file.exists() else {}
+    applied = 0
+    for s in students:
+        if s["reg"] in paid and s["owes"]:
+            s["owes"] = False
+            s["paid_mark"] = True
+            s["detail"] += f"  |  marked PAID via bot on {paid[s['reg']].get('at', '?')[:10]}"
+            applied += 1
+    if applied:
+        print(f"applied {applied} paid-mark(s) from data/payments.json")
+
     out = {
         "meta": {
             "school": "JOCOMFY SCHOOL",

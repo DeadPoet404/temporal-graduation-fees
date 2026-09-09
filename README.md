@@ -64,8 +64,15 @@ journalctl -u grad-bot -f
 | message | reply |
 |---|---|
 | `/start`, `/help` | usage |
-| `/stats` | register summary (students, owers, total) |
+| `/stats` | register summary (students, owers, total, paid-marks) |
+| `/payments` | audit list of indexes marked paid via the bot |
 | anything else | treated as an index number |
+
+When a student **owes**, the reply shows two buttons: **Paid now** (records the
+payment in `data/payments.json`, removes the index from the owing list and
+edits the message) and **Cancel** (dismisses the buttons, changes nothing).
+The ledger survives restarts and `gen_data.py` regenerations, and is
+git-ignored - it lives on each machine
 
 ## Data
 

@@ -2,3 +2,5 @@ config.json
 bot.log
 __pycache__/
 *.pyc
+data/payments.json
+data/payments.tmp
