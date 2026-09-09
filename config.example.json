@@ -1,0 +1,4 @@
+{
+  "bot_token": "PASTE_TELEGRAM_BOT_TOKEN_HERE",
+  "chat_id": "PASTE_ALLOWED_CHAT_ID_HERE_OR_LEAVE_EMPTY"
+}

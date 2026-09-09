@@ -1,0 +1,19 @@
+# systemd unit for the JOCOMFY graduation-fee bot
+# sudo cp deploy/grad-bot.service /etc/systemd/system/grad-bot.service
+# edit WorkingDirectory + User, then:
+# sudo systemctl daemon-reload && sudo systemctl enable --now grad-bot
+[Unit]
+Description=JOCOMFY graduation fee Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=cypher-admin
+WorkingDirectory=/home/cypher-admin/temporal-graduation-fees
+ExecStart=/usr/bin/python3 bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
